@@ -54,7 +54,7 @@ st.markdown("<h4 style='font-size: 16px; color: #ffffff; margin-top: -10px; marg
 current_balance = st.number_input("Current Savings Balance (in R)", min_value=0.0, step=100.0, value=0.0, format="%.2f", key="current_balance")
 interest_rate = st.number_input("Annual Interest Rate (in %)", min_value=0.0, step=1.0, value=0.0, format="%.2f", key="interest_rate")
 target_value = st.number_input("Target Savings Value (in R)", min_value=0.0, step=100.0, value=0.0, format="%.2f", key="target_value")
-start_date = st.date_input("Start Date for First Transfer", min_value=datetime.date.today())
+start_date = st.date_input("First Date for Transfer Deposit", min_value=datetime.date.today())
 target_date = st.date_input("Target Date", min_value=start_date)
 deposit_period = st.selectbox("Period of Deposits", ["Daily", "Weekly", "Monthly"])
 
