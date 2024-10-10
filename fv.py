@@ -42,7 +42,7 @@ st.markdown(
 )
 
 # Header and description
-st.markdown("<h1 style='font-size: 56px; color: #00e0ff; font-weight: 900; letter-spacing: 2px;'>Save Smarter</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='font-size: 56px; color: #00e0ff; font-weight: 900; letter-spacing: 2px; text-shadow: 0 0 5px #00e0ff;'>Save Smarter</h1>", unsafe_allow_html=True)
 st.markdown("<h4 style='font-size: 16px; color: #ffffff; margin-top: -10px; margin-bottom: 20px;'>When you don't know how to reach your goals - we do.</h4>", unsafe_allow_html=True)
 
 # Input fields
@@ -160,7 +160,7 @@ else:
         required_deposit = fv_needed / n if n > 0 else 0.0
 
     if required_deposit > 0 and target_value > future_value:
-        period_label = deposit_period.lower()
+        period_label = 'day' if deposit_period == 'Daily' else ('week' if deposit_period == 'Weekly' else 'month')
         st.info(f"To reach your target of R{target_value:,.2f} by {target_date}, you will need to deposit R{required_deposit:,.2f} every {period_label}. This will require {total_deposit_periods} deposits over a period of {days_remaining} days.")
     else:
         if target_value > 0 and future_value < target_value and current_balance > 0:
