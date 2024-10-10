@@ -42,14 +42,14 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.image('∑.png', width=200)
-st.markdown("<h4 style='font-size: 16px; color: #ff00ff; margin-top: -10px; margin-bottom: 20px;'>Save like a Sigma</h4>", unsafe_allow_html=True)
+st.markdown("<h1 style='font-size: 56px; color: #00e0ff; font-weight: 900; letter-spacing: 2px;'>Save Smarter</h1>", unsafe_allow_html=True)
+st.markdown("<h4 style='font-size: 16px; color: #ffffff; margin-top: -10px; margin-bottom: 20px;'>When you don't know how to reach your goals - we do.</h4>", unsafe_allow_html=True)
 
 current_balance = st.number_input("Current Savings Balance (in R)", min_value=0.0, step=100.0, value=0.0, format="%.2f", key="current_balance")
 interest_rate = st.number_input("Annual Interest Rate (in %)", min_value=0.0, step=1.0, value=0.0, format="%.2f", key="interest_rate")
 target_value = st.number_input("Target Savings Value (in R)", min_value=0.0, step=100.0, value=0.0, format="%.2f", key="target_value")
-start_date = st.date_input("First Date for Deposit", min_value=datetime.date.today() + datetime.timedelta(days=1), max_value=target_date - datetime.timedelta(days=1))
-target_date = st.date_input("Target Date", min_value=datetime.date.today() + datetime.timedelta(days=2))
+start_date = st.date_input("First Date for Deposit", min_value=datetime.date.today() + datetime.timedelta(days=1))
+target_date = st.date_input("Target Date", min_value=start_date + datetime.timedelta(days=1))
 deposit_period = st.selectbox("Period of Deposits", ["Daily", "Weekly", "Monthly"])
 
 current_date = datetime.date.today()
