@@ -17,25 +17,25 @@ st.markdown(
         background-color: #000000;
     }
     .stButton > button {
-        background-color: #00e0ff;
+        background-color: #ff00ff;
         color: #ffffff;
         border-radius: 5px;
         border: none;
     }
     input {
-        background-color: #00e0ff;
+        background-color: #00ffff;
         color: #000000;
     }
     .stDateInput input {
-        background-color: #00e0ff;
+        background-color: #00ffff;
         color: #000000;
     }
     .stNumberInput input {
-        background-color: #00e0ff;
+        background-color: #00ffff;
         color: #000000;
     }
     .stSelectbox div[data-baseweb='select'] {
-        background-color: #00e0ff !important;
+        background-color: #00ffff !important;
         color: #000000 !important;
     }
     </style>
@@ -44,8 +44,8 @@ st.markdown(
 )
 
 # Title of the app
-st.markdown("<h1 style='font-size: 56px; color: #00e0ff; font-weight: 900; letter-spacing: 2px;'>Save Smarter</h1>", unsafe_allow_html=True)
-st.markdown("<h4 style='font-size: 16px; color: #ffffff; margin-top: -10px; margin-bottom: 20px;'>When you don't know how to reach your goals - we do.</h4>", unsafe_allow_html=True)
+st.image('∑.png', width=200)
+st.markdown("<h4 style='font-size: 16px; color: #ff00ff; margin-top: -10px; margin-bottom: 20px;'>Save like a Sigma</h4>", unsafe_allow_html=True)
 
 # Inputs from the user
 current_balance = st.number_input("Current Savings Balance (in R)", min_value=0.0, step=100.0, value=0.0, format="%.2f", key="current_balance")
@@ -82,7 +82,7 @@ rate_per_period = (interest_rate / 100) / compounding_periods_per_year
 future_value = current_balance * ((1 + rate_per_period) ** months_remaining)
 
 # Check if target can be met without additional deposits
-if target_value > 0 and future_value >= target_value and current_balance > 0 and interest_rate > 0:
+if target_value > 0 and future_value >= target_value and current_balance > 0 and interest_rate > 0 and start_date < target_date:
     st.write(f"Based on your current balance and interest rate, you will reach your target without any additional deposits. By {target_date}, your estimated balance will be R{future_value:,.2f}.")
 else:
     # Calculate the required deposit per period using the future value of an annuity formula
@@ -92,14 +92,14 @@ else:
         r = (interest_rate / 100) / deposit_periods_per_year
         n = total_deposit_periods
 
-        if r > 0:
+        if r > 0 and n > 0:
             required_deposit = fv_needed * r / (((1 + r) ** n) - 1)
         else:
-            required_deposit = fv_needed / n
+            required_deposit = fv_needed / n if n > 0 else 0.0
     else:
-        required_deposit = (target_value - future_value) / total_deposit_periods
+        required_deposit = (target_value - future_value) / total_deposit_periods if total_deposit_periods > 0 else 0.0
     
-    if required_deposit > 0 and current_balance > 0 and interest_rate >= 0 and target_value > 0:
+    if required_deposit > 0 and current_balance > 0 and interest_rate >= 0 and target_value > 0 and start_date < target_date:
         period_label = 'day' if deposit_period == 'Daily' else ('week' if deposit_period == 'Weekly' else 'month')
         st.write(f"To reach your target of R{target_value:,.2f} by {target_date}, you will need to deposit R{required_deposit:,.2f} every {period_label}. This will require {total_deposit_periods} deposits over a period of {days_remaining} days.")
     else:
