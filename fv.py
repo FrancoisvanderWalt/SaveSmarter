@@ -17,25 +17,25 @@ st.markdown(
         background-color: #000000;
     }
     .stButton > button {
-        background-color: #ff00ff;
+        background-color: #00e0ff;
         color: #ffffff;
         border-radius: 5px;
         border: none;
     }
     input {
-        background-color: #00ffff;
+        background-color: #00e0ff;
         color: #000000;
     }
     .stDateInput input {
-        background-color: #00ffff;
+        background-color: #00e0ff;
         color: #000000;
     }
     .stNumberInput input {
-        background-color: #00ffff;
+        background-color: #00e0ff;
         color: #000000;
     }
     .stSelectbox div[data-baseweb='select'] {
-        background-color: #00ffff !important;
+        background-color: #00e0ff !important;
         color: #000000 !important;
     }
     </style>
@@ -44,8 +44,8 @@ st.markdown(
 )
 
 # Title of the app
-st.image('∑.png', width=200)
-st.markdown("<h4 style='font-size: 16px; color: #ff00ff; margin-top: -10px; margin-bottom: 20px;'>Save like a Sigma</h4>", unsafe_allow_html=True)
+st.markdown("<h1 style='font-size: 56px; color: #00e0ff; font-weight: 900; letter-spacing: 2px;'>Save Smarter</h1>", unsafe_allow_html=True)
+st.markdown("<h4 style='font-size: 16px; color: #ffffff; margin-top: -10px; margin-bottom: 20px;'>When you don't know how to reach your goals - we do.</h4>", unsafe_allow_html=True)
 
 # Inputs from the user
 current_balance = st.number_input("Current Savings Balance (in R)", min_value=0.0, step=100.0, value=0.0, format="%.2f", key="current_balance")
