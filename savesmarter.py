@@ -152,7 +152,7 @@ future_value = (current_balance or 0) * ((1 + rate_per_period) ** months_remaini
 
 # Check if target can be met without additional deposits
 if target_value > 0 and future_value >= target_value and interest_rate > 0 and start_date < target_date:
-    st.success(f"Based on your current balance and interest rate, you will reach your target without any additional deposits. By {target_date.strftime('%d %B %Y')}, your estimated balance will be R{future_value:,.2f}.")
+    st.success(f"Based on your current balance and interest rate, you will reach your target without any additional deposits. \nBy {target_date.strftime('%d %B %Y')}, your estimated balance will be R{future_value:,.2f}.")
 else:
     # Calculate the required deposit per period using the future value of an annuity formula
     fv_needed = target_value - future_value
@@ -166,7 +166,7 @@ else:
 
     if required_deposit > 0 and target_value > future_value:
         period_label = 'day' if deposit_period == 'Daily' else ('week' if deposit_period == 'Weekly' else 'month')
-        st.info(f"To reach your target of R{target_value:,.2f} by {target_date.strftime('%d %B %Y')}, you will need to deposit R{required_deposit:,.2f} every {period_label}. This will require {total_deposit_periods} deposits over a period of {days_remaining} days.")
+        st.info(f"To reach your target of R{target_value:,.2f} by {target_date.strftime('%d %B %Y')}, you will need to deposit R{required_deposit:,.2f} every {period_label}. \nThis will require {total_deposit_periods} deposits over a period of {days_remaining} days.")
     else:
         if target_value > 0 and future_value < target_value and current_balance > 0:
             st.warning("Your current balance and interest rate are insufficient to reach your target without additional deposits.")
