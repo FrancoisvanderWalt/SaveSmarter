@@ -1,5 +1,6 @@
 import streamlit as st
 import datetime
+from datetime import timedelta
 import numpy as np
 
 # Styling and UI customization
@@ -137,11 +138,15 @@ deposit_frequency = {
     "Monthly": 30
 }[deposit_period]
 
-total_deposit_periods = max(1, days_remaining // deposit_frequency)
+date = start_date
+total_deposit_periods = 0
+while date < target_date:
+    total_deposit_periods += 1
+    date += timedelta(days=deposit_frequency)
 
 # Compounding calculations
 compounding_periods_per_year = 12
-rate_per_period = (interest_rate / 100) / compounding_periods_per_year if interest_rate is not None else 0
+rate_per_period = (interest_rate / 100) / compounding_periods_per_year
 
 future_value = (current_balance or 0) * ((1 + rate_per_period) ** months_remaining)
 
@@ -151,11 +156,11 @@ if target_value > 0 and future_value >= target_value and interest_rate > 0 and s
 else:
     # Calculate the required deposit per period using the future value of an annuity formula
     fv_needed = target_value - future_value
-    r = (interest_rate / 100) / deposit_periods_per_year
+    r = (interest_rate / 100) / deposit_periods_per_year # Estimate interest for simplicity of demo
     n = total_deposit_periods
 
     if r > 0 and n > 0:
-        required_deposit = fv_needed * r / (((1 + r) ** n) - 1)
+        required_deposit = fv_needed * r / (((1 + r) ** n) - 1) # FV annuity function
     else:
         required_deposit = fv_needed / n if n > 0 else 0.0
 
