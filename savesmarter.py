@@ -44,7 +44,7 @@ st.markdown(
 
 # Header and description
 st.markdown("<h1 style='font-size: 56px; color: #00e0ff; font-weight: 900; letter-spacing: 2px; text-shadow: 0 0 5px #00e0ff;'>Save Smarter</h1>", unsafe_allow_html=True)
-st.markdown("<h4 style='font-size: 16px; color: #ffffff; margin-top: -10px; margin-bottom: 20px;'>When you don't know how to reach your goals - we do.</h4>", unsafe_allow_html=True)
+st.markdown("<h4 style='font-size: 16px; color: #ffffff; margin-top: -10px; margin-bottom: 20px;'>Saving made easy.</h4>", unsafe_allow_html=True)
 
 # Input fields
 current_balance = st.number_input(
